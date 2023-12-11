@@ -21,15 +21,11 @@ RUN yarn build
 FROM base AS runner
 ENV NODE_ENV production
 WORKDIR /app
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/.yarn ./.yarn
-COPY --from=builder /app/next.config.js ./next.config.js
-COPY --from=builder /app/.yarnrc.yml /app/package.json /app/yarn.lock ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 EXPOSE 3005
 ENV PORT 3005
 ENV HOSTNAME "0.0.0.0"
 
-CMD ["yarn", "serve"]
+CMD ["node", "server.js"]
