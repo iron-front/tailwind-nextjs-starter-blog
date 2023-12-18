@@ -22,9 +22,10 @@ ENV NODE_ENV production
 WORKDIR /app
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 
-EXPOSE 3005
-ENV PORT 3005
+EXPOSE 3004
+ENV PORT 3004
 ENV HOSTNAME "0.0.0.0"
 
 CMD ["node", "server.js"]

@@ -7,5 +7,5 @@ docker buildx build --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from=tailwind-bl
 
 # docker run
 ```shell
-docker run -d -p 3005:3005 tailwind-blog:latest
+docker run --name tailwind -d -p 3004:3004 tailwind-blog:latest
 ```
