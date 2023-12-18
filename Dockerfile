@@ -5,7 +5,6 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY .yarn .yarn
 COPY .yarnrc.yml package.json yarn.lock ./
-COPY .contentlayer /
 RUN yarn add esbuild && yarn
 
 
